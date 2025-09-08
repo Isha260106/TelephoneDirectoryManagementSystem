@@ -5,7 +5,7 @@ void addDept(){
     //char deptName[15];
     Department dept;
     printf("Telephone Directory Maintenance System\n");
-    printf("=======================================\n");
+    printf("==================================\n");
     printf("\nAdd a Department\n");
     printf("===================\n");
     printf("Enter Department Name : ");
