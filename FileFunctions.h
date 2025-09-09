@@ -1,4 +1,5 @@
-#include<stdio.h>
+#ifndef fileFunctions_H
+#define fileFunctions_H
 
 typedef struct {
     int deptCode;
@@ -12,7 +13,7 @@ typedef struct {
     char location[5];
 }Employee;
 
-void addToDept(char *filename, Department dept);
+void addToDept(Department dept);
 
 void fetchPrevDeptCode(char *filename);
 
@@ -22,4 +23,4 @@ void addEmployee(char *filename,Employee emp);
 
 Employee getAllEmployees(char *filename);
 
-
+#endif

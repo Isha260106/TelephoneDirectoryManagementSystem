@@ -10,7 +10,7 @@ void addDept(){
     printf("===================\n");
     printf("Enter Department Name : ");
     scanf("%s",dept.deptName);
-    addToDept("dept.txt",dept);
+    addToDept(dept);
     printf("Department Code : %d",dept.deptCode);
     printf("\nPress Any key to continue\n");
     getchar();
