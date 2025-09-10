@@ -61,12 +61,14 @@ void getAllEntiresFromDept(){
         return;
     }
     printf("Department DeptCode\n");
-    while(fscanf(fp,"%15s %4d",name,&id)==2){
+    while(fscanf(fp,"%s %d",name,&id)==2){
         printf("%-15s %4d\n",name,id);
     }
+    fclose(fp);
     return;
 }
-void addEmployee(Employee emp){
+
+void addEmployee(Employee *emp){
     FILE *fp = fopen("emp.txt", "r+");
     if (fp == NULL) {
         fp = fopen("emp.txt", "w+");
@@ -75,57 +77,66 @@ void addEmployee(Employee emp){
             return;
         }
     }
-
     char name[25];
     int id;
     int maxId = 1000;
-
-    //char nameLower[15];
-    //char deptNameLower[15];
-    //for (int i = 0; dept->deptName[i]; i++) {
-    //    deptNameLower[i] = tolower((unsigned char)dept->deptName[i]);
-    //}
-    //deptNameLower[strlen(dept->deptName)] = '\0';
-
     while (fscanf(fp, "%s %d", name, &id) == 2) {
-        //for (int i = 0; name[i]; i++) {
-        //    nameLower[i] = tolower((unsigned char)name[i]);
-        //}
-        //nameLower[strlen(name)] = '\0';
-
-        // if (strcmp(nameLower, deptNameLower) == 0) {
-        //     printf("Duplicate Entry\n");
-        //     emp.empId = 0;
-        //    fclose(fp);
-        //    return;
-        //}
-
         if (id > maxId) {
             maxId = id;
         }
     }
 
-    emp.empId = maxId + 1;
+    emp->empId = maxId + 1;
+    printf("\nEmployee Id : %d\n",emp->empId);
 
+    getAllEntiresFromDept();
+
+    printf("Enter Department Code : ");
+    scanf("%d",&emp->dept.deptCode);
+    FILE *fp1=fopen("dept.txt","r+");
+    if(fp1==NULL){
+        printf("File Not found\n");
+        return;
+    }
+    int found=0;
+    while(fscanf(fp1,"%s %d",name,&id)==2){
+        if(id==emp->dept.deptCode){
+            strcpy(emp->dept.deptName,name);
+            found=1;
+            break;
+        }
+    }
+    fclose(fp1);
+    if(found==0){
+        printf("Invalid Code!!\n");
+        return;
+    }else{
+    printf("Department Name : %s\n",emp->dept.deptName);
+    //fclose(fp1);
+    printf("Enter Location : ");
+    scanf("%s",emp->location);
+   
+    
     fseek(fp, 0, SEEK_END);
-    fprintf(fp, "%s %d\n", emp.empName, emp.empId);
-
-    printf("Employee added successfully!\n");
-
+    fprintf(fp, "%s %d %d %s %s\n", emp->empName, emp->empId, emp->dept.deptCode,emp->dept.deptName,emp->location);
+    printf("Press enter to continue\n");
+    while(getchar()!='\n');
+    getchar();
     fclose(fp);
+    }
 }
 void getAllEmployees(){
     FILE *fp = fopen("emp.txt", "r");
-    char name[15];
-    int id;
+    char name[25],deptName[15];
+    int id,deptCode;
     char loc[5];
     if (fp == NULL) {
         printf("Failed to open the file.\n");
         return;
     }
     printf("Employee EmpID\n");
-    while(fscanf(fp,"%15s %4d %15s",name,&id,loc)==3){
-        printf("%-15s %4d %15s\n",name,id,loc);
+    while(fscanf(fp,"%s %d %d %s %s",name,&id,&deptCode,deptName,loc)==5){
+        printf("%-25s %4d %4d %-15s %-5s\n",name,id,deptCode,deptName,loc);
     }
     return;
 }

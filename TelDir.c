@@ -31,6 +31,40 @@ void deptMaintenance(){
     } 
 }
 
+void empMaintenance(){
+    int choice;
+    Employee emp;
+    while (1) {
+        printf("Telephone Directory Maintenance System\n");
+        printf("=======================================\n");
+        printf("\nEmployee Maintenance Menu\n");
+        printf("==============================\n");
+        printf("1. Add Employee\n");
+        printf("2. Print Employee Details \n");
+        printf("3. Goto Main menu\n");
+        printf("Enter your Choice : ");
+        
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                printf("Enter Employee Name : ");
+                scanf("%s",emp.empName);
+                addEmployee(&emp);
+                break;
+            case 2:
+                getAllEmployees();
+                break;
+            case 3:
+                printf("Exiting...\n");
+                return;
+                break;
+            default:
+                printf("Invalid Choice\n");
+        }
+    } 
+}
+
 int main(){
     int choice;
     while(1){
@@ -45,7 +79,8 @@ int main(){
         {
         case 1: deptMaintenance();
                 break;
-        
+        case 2 : empMaintenance();
+                 break;
         default:
             break;
         }
