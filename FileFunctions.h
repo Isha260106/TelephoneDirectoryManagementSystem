@@ -17,8 +17,8 @@ void addToDept(Department *dept);
 
 void getAllEntiresFromDept();
 
-void addEmployee(char *filename,Employee emp);
+void addEmployee(Employee emp);
 
-Employee getAllEmployees(char *filename);
+Employee getAllEmployees();
 
 #endif
