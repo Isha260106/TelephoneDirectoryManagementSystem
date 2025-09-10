@@ -13,11 +13,9 @@ typedef struct {
     char location[5];
 }Employee;
 
-void addToDept(Department dept);
+void addToDept(Department *dept);
 
-void fetchPrevDeptCode(char *filename);
-
-Department getAllEntiresFromDept(char *filename);
+void getAllEntiresFromDept();
 
 void addEmployee(char *filename,Employee emp);
 
