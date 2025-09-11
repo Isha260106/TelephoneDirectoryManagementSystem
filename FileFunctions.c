@@ -119,7 +119,7 @@ void addEmployee(Employee *emp){
    
     
     fseek(fp, 0, SEEK_END);
-    fprintf(fp, "%s %d %d %s %s\n", emp->empName, emp->empId, emp->dept.deptCode,emp->dept.deptName,emp->location);
+    fprintf(fp, "%-25s %4d %4d %-15s %-5s\n", emp->empName, emp->empId, emp->dept.deptCode,emp->dept.deptName,emp->location);
     printf("Press enter to continue\n");
     while(getchar()!='\n');
     getchar();
@@ -141,59 +141,17 @@ void getAllEmployees(){
     }
     return;
 }
-void addTelephoneNumber(int empId){
-    // FILE *fp=fopen("emp.txt","r");
-    //  if (fp == NULL) {
-    //     printf("Failed to open the file.\n");
-    //     return;
-    // }
-    // char name[25],deptName[15],loc[5];
-    // int deptCode,id,found=0;
-    // while(fscanf(fp,"%s %d %d %s %s",name,&id,&deptCode,deptName,loc)==5){
-    //     if(empId==id){
-    //         found=1;
-    //         break;
-    //     }
-    // }
-    // fclose(fp);
-    // if(found==0){
-    //     printf("Employee ID not found\n");
-    //     return;
-    // }
-    // else{
-    //     printf("%-5s %4d\n",loc,deptCode);
-    //     int maxNo=deptCode*1000+1;
-    //     // printf("%d\n",maxNo);
-    //     FILE *fp=fopen("temp.txt","r");
-    //     FILE *fp1=fopen("temp.txt","a");
-    //     if (fp == NULL ) {
-    //         printf("Failed to open the file.\n");
-    //         return;
-    //     }
-    //     int telNo,deptCode1;
-    //     while(fscanf(fp,"%s %d %d %s %s %d",name,&id,&deptCode1,deptName,loc,telNo)==6){
-    //         if(deptCode==deptCode1){
-    //             if(telNo>=maxNo)
-    //             {
-    //                 maxNo=telNo+1;
-    //             }
-    //         }
-    //     }
-    //     fseek(fp, 0, SEEK_END);
-    //     fprintf(fp1,"%s %d %d %s %s %d\n",name,id,deptCode1,deptName,loc,maxNo);
-    //     fclose(fp);
-    //     fclose(fp1);
-    // }
-     FILE *fpEmp = fopen("emp.txt", "r");
-    if (fpEmp == NULL) {
+
+void addTelephoneNumber(int empId) {
+    FILE *fpEmp = fopen("emp.txt", "r");
+    if (!fpEmp) {
         printf("Failed to open emp.txt\n");
         return;
     }
 
     char name[25], deptName[15], loc[5];
-    int id, deptCode;
-    int found = 0;
-     while (fscanf(fpEmp, "%s %d %d %s %s", name, &id, &deptCode, deptName, loc) == 5) {
+    int id, deptCode, found = 0;
+    while (fscanf(fpEmp, "%24s %d %d %14s %4s", name, &id, &deptCode, deptName, loc) == 5) {
         if (id == empId) {
             found = 1;
             break;
@@ -206,34 +164,27 @@ void addTelephoneNumber(int empId){
         return;
     }
 
-    printf("Employee found: %-5s %4d\n", loc, deptCode);
-
     int maxNo = deptCode * 1000 + 1;
 
-    // Open temp.txt to find the max telephone number for this department
-    FILE *fpRead = fopen("temp.txt", "r");
-    if (fpRead == NULL){return;}
-        char tname[25], tdeptName[15], tloc[5];
-        int tid, tdeptCode, tno;
-        while (fscanf(fpRead, "%s %d %d %s %s %d", tname, &tid, &tdeptCode, tdeptName, tloc, &tno) == 6) {
-            if (tdeptCode == deptCode && tno >= maxNo) {
-                maxNo = tno + 1;
-            }
+    FILE *fpTel = fopen("temp.txt", "r+");
+    if (!fpTel) {
+        fpTel = fopen("temp.txt", "w+");
+        if (!fpTel) {
+            printf("Failed to open or create temp.txt\n");
+            return;
         }
-        fclose(fpRead);
-    
-
-    // Open temp.txt in append mode to add the new record
-    FILE *fpAppend = fopen("temp.txt", "a");
-    if (fpAppend == NULL) {
-        printf("Failed to open temp.txt for appending\n");
-        return;
     }
+    char tname[25], tdeptName[15], tloc[5];
+    int tid, tdeptCode, telNo;
+    rewind(fpTel);
+    while (fscanf(fpTel, "%24s %d %d %14s %4s %d", tname, &tid, &tdeptCode, tdeptName, tloc, &telNo) == 6) {
+        if (tdeptCode == deptCode && telNo >= maxNo) {
+            maxNo = telNo + 1;
+        }
+    }
+    fseek(fpTel, 0, SEEK_END);
+    fprintf(fpTel, "%-25s %4d %4d %-15s %-5s %7d\n", name, id, deptCode, deptName, loc, maxNo);
+    printf("Telephone number %d assigned to employee %s\n", maxNo, name);
 
-    // Append the new telephone record
-    fprintf(fpAppend, "%s %d %d %s %s %d\n", name, id, deptCode, deptName, loc, maxNo);
-
-    printf("Added telephone number %d for employee %s\n", maxNo, name);
-
-    fclose(fpAppend);
+    fclose(fpTel);
 }

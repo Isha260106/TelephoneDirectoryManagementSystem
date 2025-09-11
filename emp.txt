@@ -1,4 +1,5 @@
-Isha 1001 1001 CSE kwr
-Deepti 1002 1002 ISE sirsi
-Chandu 1003 1001 CSE gdg
-bhagya 1004 1002 ISE belg
+Isha                      1001 1002 ISE             kjhg 
+Mamata                    1002 1001 CSE             ijg  
+Rakshi                    1003 1002 ISE             er   
+Mala                      1004 1001 CSE             efww 
+qwertyio                  1005 1002 ISE             dfbg 
