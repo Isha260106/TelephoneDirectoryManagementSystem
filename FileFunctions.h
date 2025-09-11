@@ -21,4 +21,6 @@ void addEmployee(Employee *emp);
 
 void getAllEmployees();
 
+void addTelephoneNumber(int empId);
+
 #endif

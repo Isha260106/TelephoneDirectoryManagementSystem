@@ -1,2 +1,4 @@
-deep 1001 1002 ISE sir
-bhagya 1002 1004 mech bel
+Isha 1001 1001 CSE kwr
+Deepti 1002 1002 ISE sirsi
+Chandu 1003 1001 CSE gdg
+bhagya 1004 1002 ISE belg
