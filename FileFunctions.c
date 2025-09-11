@@ -178,6 +178,10 @@ void addTelephoneNumber(int empId) {
     int tid, tdeptCode, telNo;
     rewind(fpTel);
     while (fscanf(fpTel, "%24s %d %d %14s %4s %d", tname, &tid, &tdeptCode, tdeptName, tloc, &telNo) == 6) {
+        if(tid==empId){
+            printf("Duplicate entry\n");
+            return;
+        }
         if (tdeptCode == deptCode && telNo >= maxNo) {
             maxNo = telNo + 1;
         }
