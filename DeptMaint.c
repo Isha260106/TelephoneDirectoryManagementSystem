@@ -1,6 +1,15 @@
+//Pre-processor directives
 #include <stdio.h>
 #include "FileFunctions.h"
 
+/*
+Function to add a department to the file dept.txt
+Function Name : addDept
+Arguments : void
+Return Type : void
+Author : 
+Date : 08/09/2025
+*/
 void addDept() {
     Department dept;
     printf("Telephone Directory Maintenance System\n");
