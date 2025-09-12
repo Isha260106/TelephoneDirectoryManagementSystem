@@ -201,12 +201,27 @@ void enquireEmployeeName(char *name){
         printf("File cant be opened\n");
         return;
     }
-    char tname[25],location[5],deptName[15];
-    int empId,deptId,telNo;
-    while(fscanf(fp,"%s %d %d %s %s %d",tname,empId,deptId,deptName,location,telNo)==6){
-        if(strcmp(name,tname)==0){
-            printf("%-25s %-5s %-15s %7d\n",tname,location,deptName,telNo);
+    char nameLower[25];
+    for (int i = 0;name[i]; i++) {
+        nameLower[i] = tolower((unsigned char)name[i]);
+    }
+    nameLower[strlen(name)] = '\0';
+    char tname[25],location[5],deptName[15],lowerTname[25];
+    int empId,deptId,telNo,flag=0;
+    rewind(fp);
+    while(fscanf(fp,"%s %d %d %s %s %d",tname,&empId,&deptId,deptName,location,&telNo)==6){
+        for (int i = 0; tname[i]; i++) {
+            lowerTname[i] = tolower((unsigned char)tname[i]);
         }
+        lowerTname[strlen(tname)] = '\0';
+        if(strcmp(nameLower,lowerTname)==0){
+            printf("%-25s %-5s %15s %15d\n",tname,location,deptName,telNo);
+            flag++;
+        }
+    }
+    fseek(fp, 0, SEEK_END);
+    if(flag==0){
+        printf("Name not found\n");
     }
     printf("Press enter to continue");
     while(getchar()!='\n');

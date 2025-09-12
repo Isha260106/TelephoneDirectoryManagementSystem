@@ -107,7 +107,7 @@ void telephoneEnquiry(){
     {
         case 1: printf("Enter employee name : ");
                 scanf("%s",empName);
-                printf("Name        Location DeptName     TelNumber");
+                printf("Name \t\t\tLocation\t DeptName     TelNumber\n");
                 enquireEmployeeName(empName);
                 break;
         // case 2 : printf("Enter telephone Number : ");
