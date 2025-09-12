@@ -271,6 +271,7 @@ void enquireEmployeeName(char *name){
     nameLower[strlen(name)] = '\0';
     char tname[25],location[5],deptName[15],lowerTname[25];
     int empId,deptId,telNo,flag=0;
+    //To reposition the file pointer to the beginning of the file 
     rewind(fp);
     while(fscanf(fp,"%s %d %d %s %s %d",tname,&empId,&deptId,deptName,location,&telNo)==6){
         if(strcmp(name,tname)==0){
