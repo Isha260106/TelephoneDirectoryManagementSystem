@@ -188,7 +188,29 @@ void addTelephoneNumber(int empId) {
     }
     fseek(fpTel, 0, SEEK_END);
     fprintf(fpTel, "%-25s %4d %4d %-15s %-5s %7d\n", name, id, deptCode, deptName, loc, maxNo);
-    printf("Telephone number %d assigned to employee %s\n", maxNo, name);
-
+    printf("Telephone number allocated : %d\n", maxNo);
+    printf("Press enter to continue");
+    while(getchar()!='\n');
+    getchar();
     fclose(fpTel);
 }
+
+void enquireEmployeeName(char *name){
+    FILE *fp=fopen("temp.txt","r");
+    if(fp==NULL){
+        printf("File cant be opened\n");
+        return;
+    }
+    char tname[25],location[5],deptName[15];
+    int empId,deptId,telNo;
+    while(fscanf(fp,"%s %d %d %s %s %d",tname,empId,deptId,deptName,location,telNo)==6){
+        if(strcmp(name,tname)==0){
+            printf("%-25s %-5s %-15s %7d\n",tname,location,deptName,telNo);
+        }
+    }
+    printf("Press enter to continue");
+    while(getchar()!='\n');
+    getchar();
+    fclose(fp);
+}
+

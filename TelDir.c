@@ -90,6 +90,37 @@ void telephoneDirMaintenance(){
 }
 }
 
+void telephoneEnquiry(){
+    int choice,telPhNo;
+    char empName[25];
+    while(1){
+    printf("Telephone Directory Maintenance System\n");
+    printf("=======================================\n");
+    printf("\nTelephone Enquiry Menu\n");
+    printf("==============================\n");
+    printf("1. Enquiry on Employee Name \n");
+    printf("2. Enquiry on Telephone Number \n");
+    printf("3. Goto Main Menu \n");
+    printf("Enter your Choice : ");  
+    scanf("%d", &choice);
+    switch (choice)
+    {
+        case 1: printf("Enter employee name : ");
+                scanf("%s",empName);
+                printf("Name        Location DeptName     TelNumber");
+                enquireEmployeeName(empName);
+                break;
+        // case 2 : printf("Enter telephone Number : ");
+        //          scanf("%d",&telPhNo);
+        //          enquireTelephoneNumber(telPhNo);
+        //          break;        
+        case 3 : printf("Exiting...\n");
+                return;
+        default: printf("Invalid Choice\n");
+    }
+    }
+}
+
 int main(){
     int choice;
     while(1){
@@ -97,7 +128,7 @@ int main(){
         printf("==================================\n");
         printf("Main Menu\n");
         printf("==========\n");
-        printf("1. Department Maintenance\n2. Employee Maintenance\n3.Telephone Directory Maintenance\n4. Exit\n");
+        printf("1. Department Maintenance\n2. Employee Maintenance\n3.Telephone Directory Maintenance\n4. Telephone Enquiry\n5. Exit\n");
         printf("Enter your choice : ");
         scanf("%d",&choice);
         switch (choice)
@@ -108,7 +139,8 @@ int main(){
                  break;
         case 3 : telephoneDirMaintenance();
                  break;
-        
+        case 4 : telephoneEnquiry();
+                 break;
         default:
             break;
         }

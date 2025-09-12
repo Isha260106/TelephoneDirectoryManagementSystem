@@ -1,3 +1,4 @@
 Mala                      1004 1001 CSE             efww  1001001
 Rakshi                    1003 1002 ISE             er    1002001
 Isha                      1001 1002 ISE             kjhg  1002002
+Isha                      1006 1002 ISE             rg    1002003

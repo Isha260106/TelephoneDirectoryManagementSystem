@@ -3,3 +3,4 @@ Mamata                    1002 1001 CSE             ijg
 Rakshi                    1003 1002 ISE             er   
 Mala                      1004 1001 CSE             efww 
 qwertyio                  1005 1002 ISE             dfbg 
+Isha                      1006 1002 ISE             rg   
