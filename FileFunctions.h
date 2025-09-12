@@ -26,4 +26,6 @@ void addTelephoneNumber(int empId);
 void enquireEmployeeName(char *name);
 
 void enquireTelephoneNumber(int num);
+
+
 #endif

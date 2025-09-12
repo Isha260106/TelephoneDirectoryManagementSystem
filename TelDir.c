@@ -122,7 +122,17 @@ void telephoneEnquiry(){
 }
 
 int main(){
-    int choice;
+    int choice,userId;
+     printf("Telephone Directory Maintenance System\n");
+        printf("==================================\n");
+        printf("Login screen\n");
+        printf("==========\n");
+        printf("Enter User ID : ");
+        scanf("%d",&userId);
+        if(userId!=1000){
+            printf("Invalid credentials");
+        }
+        else{
     while(1){
         printf("Telephone Directory Maintenance System\n");
         printf("==================================\n");
@@ -145,5 +155,6 @@ int main(){
             break;
         }
     }
+}
     return 0;
 }
