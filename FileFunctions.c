@@ -241,6 +241,7 @@ void addTelephoneNumber(int empId) {
     }
     //To position the file pointer to the end of the file in oder to append the contents of the file
     fseek(fpTel, 0, SEEK_END);
+    //Allocating telephone number to the user
     fprintf(fpTel, "%-25s %4d %4d %-15s %-5s %7d\n", name, id, deptCode, deptName, loc, maxNo);
     printf("Telephone number allocated : %d\n", maxNo);
     printf("Press enter to continue");
@@ -249,12 +250,21 @@ void addTelephoneNumber(int empId) {
     fclose(fpTel);
 }
 
+/*
+Function to enquire based on employee name
+Function Name : enquireEmployeeName
+Arguments : char *name
+Return Type : void
+Author : 
+Date : 10/09/2025
+*/
 void enquireEmployeeName(char *name){
     FILE *fp=fopen("temp.txt","r");
     if(fp==NULL){
         printf("File cant be opened\n");
         return;
     }
+    //Converting the name to lowercase so as to make it case insensitive
     char nameLower[25];
     for (int i = 0;name[i]; i++) {
         nameLower[i] = tolower((unsigned char)name[i]);
@@ -262,17 +272,20 @@ void enquireEmployeeName(char *name){
     nameLower[strlen(name)] = '\0';
     char tname[25],location[5],deptName[15],lowerTname[25];
     int empId,deptId,telNo,flag=0;
+    //To reposition the file pointer to the beginning of the file
     rewind(fp);
     while(fscanf(fp,"%s %d %d %s %s %d",tname,&empId,&deptId,deptName,location,&telNo)==6){
         for (int i = 0; tname[i]; i++) {
             lowerTname[i] = tolower((unsigned char)tname[i]);
         }
         lowerTname[strlen(tname)] = '\0';
+        //Searches for the name in the file temp.txt
         if(strcmp(nameLower,lowerTname)==0){
             printf("%-25s %-5s %15s %15d\n",tname,location,deptName,telNo);
             flag++;
         }
     }
+    //To position the file pointer to the end of the file in oder to append the contents of the file
     fseek(fp, 0, SEEK_END);
     if(flag==0){
         printf("Name not found\n");
