@@ -203,7 +203,7 @@ void enquireEmployeeName(char *name){
     }
     char tname[25],location[5],deptName[15];
     int empId,deptId,telNo;
-    while(fscanf(fp,"%s %d %d %s %s %d",tname,empId,deptId,deptName,location,telNo)==6){
+    while(fscanf(fp,"%s %d %d %s %s %d",tname,&empId,&deptId,deptName,location,&telNo)==6){
         if(strcmp(name,tname)==0){
             printf("%-25s %-5s %-15s %7d\n",tname,location,deptName,telNo);
         }
@@ -214,3 +214,23 @@ void enquireEmployeeName(char *name){
     fclose(fp);
 }
 
+void enquireTelephoneNumber(int num){
+    FILE *fp=fopen("temp.txt","r");
+    if(fp==NULL){
+        printf("File cant be opened\n");
+        return;
+    }
+    char name[25],loc[5],deptName[15];
+    int Id,deptId,telNo;
+    while(fscanf(fp,"%s %d %d %s %s %d",name,&Id,&deptId,deptName,loc,&telNo)==6){
+        if(num==telNo){
+            printf("Employee Name       :%s\n",name);
+            printf("Location            :%s\n",loc);
+            printf("Department Name     :%s\n",deptName);
+        }
+    }
+    printf("Press enter to continue");
+    while(getchar()!='\n');
+    getchar();
+    fclose(fp);
+}
