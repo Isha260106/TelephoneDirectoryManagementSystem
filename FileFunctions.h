@@ -27,5 +27,4 @@ void enquireEmployeeName(char *name);
 
 void enquireTelephoneNumber(int num);
 
-
 #endif
