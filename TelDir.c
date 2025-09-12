@@ -110,10 +110,10 @@ void telephoneEnquiry(){
                 printf("Name \t\t\tLocation\t DeptName     TelNumber\n");
                 enquireEmployeeName(empName);
                 break;
-        // case 2 : printf("Enter telephone Number : ");
-        //          scanf("%d",&telPhNo);
-        //          enquireTelephoneNumber(telPhNo);
-        //          break;        
+        case 2 : printf("Enter telephone Number : ");
+                 scanf("%d",&telPhNo);
+                 enquireTelephoneNumber(telPhNo);
+                 break;        
         case 3 : printf("Exiting...\n");
                 return;
         default: printf("Invalid Choice\n");
