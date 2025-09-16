@@ -292,3 +292,31 @@ void enquireEmployeeName(char *name){
     getchar();
     fclose(fp);
 }
+
+void enquireTelephoneNumber(int num){
+    FILE *fp=fopen("temp.txt","r");
+    if(fp==NULL){
+        printf("File cant be opened\n");
+        return;
+    }
+    char name[25],location[5],deptName[15];
+    int empId,deptId,telNo,flag=0;
+    //To reposition the file pointer to the beginning of the file 
+    rewind(fp);
+    while(fscanf(fp,"%s %d %d %s %s %d",name,&empId,&deptId,deptName,location,&telNo)==6){
+        if(num==telNo){
+            printf("Employee Name   : %2s\n",name);
+            printf("Location        : %2s\n",location);
+            printf("Department Name : %s\n",deptName);
+            flag++;
+        }
+    }
+    fseek(fp, 0, SEEK_END);
+    if(flag==0){
+        printf("Name not found\n");
+    }
+    printf("Press enter to continue");
+    while(getchar()!='\n');
+    getchar();
+    fclose(fp);
+}
