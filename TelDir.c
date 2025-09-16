@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "FileFunctions.h"
+
 void deptMaintenance(){
    int choice;
     while (1) {
@@ -133,28 +134,29 @@ int main(){
             printf("Invalid credentials");
         }
         else{
-    while(1){
-        printf("Telephone Directory Maintenance System\n");
-        printf("==================================\n");
-        printf("Main Menu\n");
-        printf("==========\n");
-        printf("1. Department Maintenance\n2. Employee Maintenance\n3.Telephone Directory Maintenance\n4. Telephone Enquiry\n5. Exit\n");
-        printf("Enter your choice : ");
-        scanf("%d",&choice);
-        switch (choice)
-        {
-        case 1: deptMaintenance();
+          while(1){
+            printf("==================================\n");
+            printf("Main Menu\n");
+            printf("==========\n");
+            printf("1. Department Maintenance\n2. Employee Maintenance\n3.Telephone Directory Maintenance\n4. Telephone Enquiry\n5. Exit\n");
+            printf("Enter your choice : ");
+            scanf("%d",&choice);
+            switch (choice)
+            {
+            case 1: deptMaintenance();
+                    break;
+            case 2 : empMaintenance();
+                     break;
+            case 3 : telephoneDirMaintenance();
+                     break;
+            case 4 : telephoneEnquiry();
+                     break;
+            case 5 : printf("Exiting");
+                     return 0;
+            default:
                 break;
-        case 2 : empMaintenance();
-                 break;
-        case 3 : telephoneDirMaintenance();
-                 break;
-        case 4 : telephoneEnquiry();
-                 break;
-        default:
-            break;
+            }
         }
-    }
 }
     return 0;
 }
