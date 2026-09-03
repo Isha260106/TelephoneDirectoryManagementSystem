@@ -1,16 +1,16 @@
-//Declaration of user defined header file which consists of function declaration 
-//for implementing various operations on files  
-//Preprocessor directives
 #ifndef fileFunctions_H
 #define fileFunctions_H
+<<<<<<< HEAD
 //uytfdrcfgvhj
 //structure templete defination for  storing department details 
+=======
+
+>>>>>>> parent of 2e083d4 (Telephone Enquiryby name added)
 typedef struct {
     int deptCode;
     char deptName[15];
 }Department;
 
-//structure templete definition for storing employee details
 typedef struct {
     char empName[25];
     int empId;
@@ -18,7 +18,6 @@ typedef struct {
     char location[5];
 }Employee;
 
-//Function declarations for telephone directory maintenance system
 void addToDept(Department *dept);
 
 void getAllEntiresFromDept();
