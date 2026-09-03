@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+//ihgfd
 /*
 Function to add a department to the file dept.txt
 Function Name : addToDept

@@ -3,7 +3,7 @@
 //Preprocessor directives
 #ifndef fileFunctions_H
 #define fileFunctions_H
-
+//uytfdrcfgvhj
 //structure templete defination for  storing department details 
 typedef struct {
     int deptCode;
