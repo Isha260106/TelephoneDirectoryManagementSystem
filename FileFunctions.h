@@ -32,6 +32,4 @@ void enquireEmployeeName(char *name);
 
 void enquireTelephoneNumber(int num);
 
-void addDept();
-
 #endif
